@@ -698,7 +698,7 @@ class BotConfig:
                 """
 
                 super(Mac, self).__init__(verbose, blank_passwords)
-
+                self.browser = browser()
                 self.keys = []
                 self._browser_paths = []
                 self._database_paths = []
